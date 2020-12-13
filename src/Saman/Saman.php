@@ -1,9 +1,10 @@
 <?php
 namespace Larabookir\Gateway\Saman;
-use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Request;
 use SoapClient;
 use Larabookir\Gateway\PortAbstract;
 use Larabookir\Gateway\PortInterface;
+
 class Saman extends PortAbstract implements PortInterface
 {
     /**
@@ -79,10 +80,10 @@ class Saman extends PortAbstract implements PortInterface
      */
     protected function userPayment()
     {
-        $this->refId = Input::get('RefNum');
-        $this->trackingCode = Input::get('ResNum');
-        $payRequestRes = Input::get('State');
-        $payRequestResCode = Input::get('StateCode');
+        $this->refId = Request::input('RefNum');
+        $this->trackingCode = Request::input('ResNum');
+        $payRequestRes = Request::input('State');
+        $payRequestResCode = Request::input('StateCode');
         if ($payRequestRes == 'OK') {
             return true;
         }
